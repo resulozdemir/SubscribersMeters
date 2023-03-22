@@ -32,7 +32,6 @@ public class Main {
             System.out.println((i+1) + ".Abone kaydedildi !\n");
         }
 
-        Sayac.sirala(sayac,aboneAdedi);
         Sayac.tuketimHesapla(sayac,aboneAdedi);
         Sayac.yazdir(sayac,aboneAdedi);
 

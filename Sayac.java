@@ -29,21 +29,6 @@ public class Sayac {
         this.abone = abone;
     }
 
-    public static void sirala(Sayac[] sayac,int aboneAdedi){
-        for (int i=0;i<aboneAdedi;i++){
-            int index = i;
-            for(int j= i+1; j<aboneAdedi;j++){
-                if(sayac[j].getTuketilenElektrik() > sayac[i].getTuketilenElektrik()){
-                    index = j;
-                }
-            }
-            if (index != i){
-                Sayac gecici = sayac[i];
-                sayac[i] = sayac[index];
-                sayac[index] = gecici;
-            }
-        }
-    }
 
     public static void tuketimHesapla(Sayac[] sayac,int aboneAdedi){
         for(int i=0;i< aboneAdedi ;i++){
@@ -57,7 +42,6 @@ public class Sayac {
                 sayac[i].getAbone().setBorc(sayac[i].getTuketilenElektrik() * 2);
             }
         }
-
     }
 
     public static void yazdir(Sayac[] sayac,int aboneAdedi){
