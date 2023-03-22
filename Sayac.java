@@ -1,17 +1,9 @@
 public class Sayac {
     private int sayacNo;
-    private boolean kullanim;
     private double tuketilenElektrik;
-    private boolean tuketimVarMi;
     private AboneBilgileri abone;
 
-    public Sayac(int sayacNo, boolean kullanim, double tuketilenElektrik, boolean tuketimVarMi, AboneBilgileri abone) {
-        this.sayacNo = sayacNo;
-        this.kullanim = kullanim;
-        this.tuketilenElektrik = tuketilenElektrik;
-        this.tuketimVarMi = tuketimVarMi;
-        this.abone = abone;
-    }
+    public Sayac() {}
 
     public int getSayacNo() {
         return sayacNo;
@@ -19,14 +11,6 @@ public class Sayac {
 
     public void setSayacNo(int sayacNo) {
         this.sayacNo = sayacNo;
-    }
-
-    public boolean isKullanim() {
-        return kullanim;
-    }
-
-    public void setKullanim(boolean kullanim) {
-        this.kullanim = kullanim;
     }
 
     public double getTuketilenElektrik() {
@@ -37,14 +21,6 @@ public class Sayac {
         this.tuketilenElektrik = tuketilenElektrik;
     }
 
-    public boolean isTuketimVarMi() {
-        return tuketimVarMi;
-    }
-
-    public void setTuketimVarMi(boolean tuketimVarMi) {
-        this.tuketimVarMi = tuketimVarMi;
-    }
-
     public AboneBilgileri getAbone() {
         return abone;
     }
@@ -53,10 +29,10 @@ public class Sayac {
         this.abone = abone;
     }
 
-    public static void sirala(Sayac[] sayac){
-        for (int i=0;i<sayac.length-1;i++){
+    public static void sirala(Sayac[] sayac,int aboneAdedi){
+        for (int i=0;i<aboneAdedi;i++){
             int index = i;
-            for(int j= i+1; j<sayac.length;j++){
+            for(int j= i+1; j<aboneAdedi;j++){
                 if(sayac[j].getTuketilenElektrik() > sayac[i].getTuketilenElektrik()){
                     index = j;
                 }
@@ -69,8 +45,8 @@ public class Sayac {
         }
     }
 
-    public static void tuketimHesapla(Sayac[] sayac){
-        for(int i=0;i<sayac.length;i++){
+    public static void tuketimHesapla(Sayac[] sayac,int aboneAdedi){
+        for(int i=0;i< aboneAdedi ;i++){
             if(sayac[i].getTuketilenElektrik() > 100){
                 double ekstraKullanim = sayac[i].getTuketilenElektrik() - 100;
                 double ekstraKullanimFiyat = ekstraKullanim * 3 ;
@@ -84,12 +60,26 @@ public class Sayac {
 
     }
 
-    public static void yazdir(Sayac[] sayac){
-        for(int i=0;i< sayac.length;i++){
-            System.out.println("Sayac Numarasi : \t" + sayac[i].getSayacNo());
-            System.out.println("Abone adi : \t" + sayac[i].getAbone().getAd());
-            System.out.println("Elektrik tuketimi : \t" + sayac[i].getTuketilenElektrik());
-            System.out.println("Fatura tutari : \t" + sayac[i].getAbone().getBorc());
+    public static void yazdir(Sayac[] sayac,int aboneAdedi){
+        for(int i=0;i< aboneAdedi ;i++){
+            System.out.println("Sayac Numarasi : " + sayac[i].getSayacNo());
+            System.out.println("Abone adi : " + sayac[i].getAbone().getAd());
+            System.out.println("Elektrik tuketimi : " + sayac[i].getTuketilenElektrik());
+            System.out.println("Fatura tutari : " + sayac[i].getAbone().getBorc());
+        }
+    }
+
+    public static void ara(Sayac[] sayac,int aboneAdedi,int arananSayacNo){
+        for(int i = 0;i< aboneAdedi;i++){
+            if(sayac[i].getSayacNo() == arananSayacNo){
+                System.out.println("Elektrik tukitimi : " + sayac[i].getTuketilenElektrik());
+                System.out.println("Abone TC : " + sayac[i].getAbone().getTC());
+                System.out.println("Abone ad : " + sayac[i].getAbone().getAd());
+                System.out.println("Abone soyad : " + sayac[i].getAbone().getSoyad());
+                System.out.println("Abone adres : " + sayac[i].getAbone().getAdres());
+                System.out.println("Abone telefon numarasi : " + sayac[i].getAbone().getTelNo());
+                System.out.println("Abone borc : " + sayac[i].getAbone().getBorc());
+            }
         }
     }
 }

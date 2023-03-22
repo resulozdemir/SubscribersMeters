@@ -6,14 +6,7 @@ public class AboneBilgileri {
     private String telNo;
     private double borc;
 
-    public AboneBilgileri(String TC, String ad, String soyad, String adres, String telNo, int borc) {
-        this.TC = TC;
-        this.ad = ad;
-        this.soyad = soyad;
-        this.adres = adres;
-        this.telNo = telNo;
-        this.borc = borc;
-    }
+    public AboneBilgileri() {}
 
     public String getTC() {
         return TC;

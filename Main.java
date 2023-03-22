@@ -3,12 +3,19 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
-        Sayac[] sayac = new Sayac[100];
-        AboneBilgileri[] abone = new AboneBilgileri[100];
+        int aboneAdedi = 2;
+        Sayac[] sayac = new Sayac[aboneAdedi];
+        AboneBilgileri[] abone = new AboneBilgileri[aboneAdedi];
 
-        for(int i=0;i<100;i++){
+        for(int i=0; i<aboneAdedi; i++){
+            sayac[i] = new Sayac();
+            abone[i] = new AboneBilgileri();
+        }
+
+        for(int i=0;i<aboneAdedi;i++){
             System.out.println("Sayac Numarasini giriniz : ");
             sayac[i].setSayacNo(inp.nextInt());
+            inp.nextLine();
             System.out.println("TC kimlik numarasi giriniz : ");
             abone[i].setTC(inp.nextLine());
             System.out.println("Abone ad giriniz : ");
@@ -22,31 +29,16 @@ public class Main {
             System.out.println("Tuketilen elektrigi giriniz : ");
             sayac[i].setTuketilenElektrik(inp.nextDouble());
             sayac[i].setAbone(abone[i]);
+            System.out.println((i+1) + ".Abone kaydedildi !\n");
         }
 
-        sayac[10].getAbone().setTC("11111111111");
-        sayac[10].getAbone().setAd("Resul");
-        sayac[10].getAbone().setSoyad("Ozdemir");
-        sayac[10].getAbone().setAdres("istanbul");
-        sayac[10].getAbone().setTelNo("553 113 2552");
-        sayac[10].getAbone().setBorc(150);
-
-        Sayac.sirala(sayac);
-        Sayac.sirala(sayac);
-        Sayac.yazdir(sayac);
+        Sayac.sirala(sayac,aboneAdedi);
+        Sayac.tuketimHesapla(sayac,aboneAdedi);
+        Sayac.yazdir(sayac,aboneAdedi);
 
         System.out.println("Sayac numarasi giriniz :");
         int arananSayacNo = inp.nextInt();
-        for(int i = 0;i< sayac.length ;i++){
-            if(sayac[i].getSayacNo() == arananSayacNo){
-                System.out.println("Elektrik tukitimi : " + sayac[i].getTuketilenElektrik());
-                System.out.println("Abone TC : " + sayac[i].getAbone().getTC());
-                System.out.println("Abone ad : " + sayac[i].getAbone().getAd());
-                System.out.println("Abone soyad : " + sayac[i].getAbone().getSoyad());
-                System.out.println("Abone adres : " + sayac[i].getAbone().getAdres());
-                System.out.println("Abone telefon numarasi : " + sayac[i].getAbone().getTelNo());
-                System.out.println("Abone borc : " + sayac[i].getAbone().getBorc());
-            }
-        }
+        Sayac.ara(sayac,aboneAdedi,arananSayacNo);
+
     }
 }
